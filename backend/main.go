@@ -143,6 +143,19 @@ func handleRun(c *gin.Context) {
 
 	output, err := cmd.CombinedOutput()
 	
+	finalOutput := string(output)
+	// Filter out harmless internal Mojo runtime noise
+	if strings.Contains(finalOutput, "ERROR socket.cc:182") {
+		lines := strings.Split(finalOutput, "\n")
+		var filtered []string
+		for _, line := range lines {
+			if !strings.Contains(line, "ERROR socket.cc:182") {
+				filtered = append(filtered, line)
+			}
+		}
+		finalOutput = strings.Join(filtered, "\n")
+	}
+
 	status := "success"
 	if err != nil {
 		status = "error"
@@ -150,7 +163,7 @@ func handleRun(c *gin.Context) {
 	logEvent("run", status, req.LessonID)
 
 	response := gin.H{
-		"output": string(output),
+		"output": strings.TrimSpace(finalOutput),
 	}
 	if err != nil && string(output) == "" {
 		response["error"] = err.Error()

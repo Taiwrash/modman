@@ -153,7 +153,6 @@ function App() {
       return result;
     }).join('\n');
     setCode(formatted);
-    setOutput(prev => `${prev}\n[SYSTEM] CODE REFORMATTED`);
   };
 
   const handleReset = () => {
