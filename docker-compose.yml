@@ -1,0 +1,29 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../docker/Dockerfile.backend # We'll need to create this
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # Essential for Docker-in-Docker Mojo execution
+      - ./backend/snippets.db:/app/snippets.db
+      - mojo-cache:/tmp/mojo-cache
+    environment:
+      - PORT=8080
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - TURSO_DB_URL=${TURSO_DB_URL}
+      - TURSO_DB_TOKEN=${TURSO_DB_TOKEN}
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  mojo-cache:
