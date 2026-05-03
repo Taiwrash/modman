@@ -353,7 +353,7 @@ function App() {
       <main className="flex flex-1 overflow-hidden relative">
         
         {/* NAVIGATOR */}
-        <nav className={`${showNavigator ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 absolute lg:relative z-[90] w-64 h-full border-r border-rams-border dark:border-rams-darkBorder bg-[#FAFAFA] dark:bg-[#121212] flex flex-col`}>
+        <nav className={`${showNavigator ? 'translate-x-0 lg:w-64' : '-translate-x-full lg:w-0'} transition-all duration-300 absolute lg:relative z-[90] w-64 h-full border-r border-rams-border dark:border-rams-darkBorder bg-[#FAFAFA] dark:bg-[#121212] flex flex-col overflow-hidden`}>
           <div className="flex-1 overflow-auto py-4">
             {['FOUNDATION', 'PROJECT'].map((cat) => (
               <div key={cat} className="mb-6 px-4">
@@ -414,7 +414,7 @@ function App() {
         </div>
 
         {/* DOCUMENTATION / PROJECT BRIEF */}
-        <div className={`${showDocs ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 absolute right-0 lg:relative z-[90] w-full sm:w-[340px] h-full bg-white dark:bg-[#1A1A1A] flex flex-col shadow-[-20px_0_40px_rgba(0,0,0,0.02)]`}>
+        <div className={`${showDocs ? 'translate-x-0 lg:w-[340px]' : 'translate-x-full lg:w-0'} transition-all duration-300 absolute right-0 lg:relative z-[90] w-full sm:w-[340px] h-full bg-white dark:bg-[#1A1A1A] flex flex-col shadow-[-20px_0_40px_rgba(0,0,0,0.02)] overflow-hidden`}>
           <div className="p-6 md:p-10 flex flex-col h-full overflow-auto">
             <div className="flex items-center justify-between mb-10">
               <div className="flex items-center space-x-3 opacity-30">
