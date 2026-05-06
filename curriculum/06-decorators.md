@@ -3,7 +3,7 @@ id: 'decorators'
 category: 'FOUNDATION'
 title: '06. Param Decorators'
 subtitle: 'Explicit Memory'
-manual_link: 'https://docs.modular.com/mojo/manual/functions/arguments'
+manual_link: 'https://docs.modular.com/mojo/manual/values/ownership/#argument-conventions'
 ---
 
 Mojo provides fine-grained control over how arguments are passed to functions via decorators:
